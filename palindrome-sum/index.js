@@ -1,7 +1,10 @@
 // Sum of all palindrome numbers of n-digits
 
-function palindrome(size){
-    
+function palindrome(size, displayNumbers = false){
+    const maxIntSize = Number.MAX_SAFE_INTEGER.toString().length;
+
+    if (maxIntSize < size) return 'Number is too big';
+
     const half = Math.floor(size / 2);
     const halfSize = size % 2 === 0 ? size / 2 : Math.floor(size / 2) + 1;
 
@@ -19,7 +22,10 @@ function palindrome(size){
         backHalf = backHalf.split('').reverse().join('');
 
         const newVal = parseInt(val.toString() + backHalf);
-       
+
+        if (displayNumbers)
+            console.log(newVal);
+
         sum += newVal;
         val++;
     }
@@ -27,4 +33,4 @@ function palindrome(size){
     return sum;
 }
 
-console.log(palindrome(5));
+console.log(palindrome(10, false));
